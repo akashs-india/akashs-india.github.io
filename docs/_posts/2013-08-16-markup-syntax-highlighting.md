@@ -1,4 +1,6 @@
 ---
+layout: post
+author: Akash Sharma
 title: "Markup: Syntax Highlighting"
 excerpt: "Post displaying the various ways one can highlight code blocks with Jekyll. Some options include standard Markdown, GitHub Flavored Markdown, and Jekyll's `{% highlight %}` tag."
 last_modified_at: 2017-03-09T10:27:01-05:00

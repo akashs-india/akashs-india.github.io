@@ -69,6 +69,8 @@
   @include clearfix;
   margin-bottom: 3em;
   text-align: center;
+  background-image: url("../../images/img1.jpg");
+  background-size: 1000px;
 }
 
 .site-title {
@@ -93,6 +95,7 @@
 .site-logo {
   display: inline-block;
   position: relative;
+  margin-top: 1em;
   z-index: 10;
 }
 

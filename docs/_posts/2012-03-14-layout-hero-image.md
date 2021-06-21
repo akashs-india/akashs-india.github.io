@@ -1,8 +1,8 @@
 ---
 title: "Layout: Hero Image"
 image: 
-  path: /images/so-simple-sample-image-3.jpg
-  thumbnail: /images/so-simple-sample-image-3-400x200.jpg
+  path: /images/profile.png
+  thumbnail: /images/profile.png
   caption: "Photo from [WeGraphics](http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/)"
 categories:
   - Layout

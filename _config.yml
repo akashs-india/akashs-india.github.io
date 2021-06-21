@@ -17,11 +17,11 @@ theme: jekyll-theme-so-simple
 # remote_theme: mmistakes/so-simple-theme
 skin: "/assets/css/skins/default.css"
 locale: en-US
-title: "My Awesome Site"
-description: "It really is the best."
+title: "Akash Sharma"
+description: "Developing software - design to deployment"
 baseurl: # the subpath of your site, e.g. "/blog"
-url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-logo: # path of site logo, e.g. "/images/logo.png"
+url: https://akashs-india.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+logo: "/images/profile.png" # path of site logo, e.g. "/images/logo.png"
 date_format: "%B %-d, %Y"
 read_time: # reading time estimates, e.g. true
 words_per_minute: # 200
@@ -36,7 +36,7 @@ google_fonts:
     weights: "400,400i,700,700i"
 google_analytics: # Google Analytics id, e.g. "UA-NNNNNNNN-N"
 disqus:
-  shortname: # Disqus shortname, e.g. "my_disqus_shortname"
+  shortname: akashs-india # Disqus shortname, e.g. "my_disqus_shortname"
 twitter:
   username: # site's Twitter username, e.g. "mmistakes"
 
@@ -50,9 +50,9 @@ markdown: kramdown
 feed:
   path: atom.xml
 
-# Pagination - https://jekyllrb.com/docs/pagination/
-# paginate: 10
-# paginate_path: /page:num/
+#Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 10
+paginate_path: /page:num/
 
 # Search
 search_full_content: false # can have performance implications for large sites
@@ -91,8 +91,8 @@ defaults:
 
 # Site Author
 author:
-  name:
-  picture:
+  name: Akash Sharma
+  picture: /images/profile.jpg
   email:
   twitter:
   links:
@@ -102,6 +102,7 @@ author:
 
 # Footer Links
 footer_links:
-  - title: Feed
-    url: atom.xml
-    icon: fas fa-rss-square
+  - title: linkedin
+    url: https://www.linkedin.com/in/akash-sharma-4b9375140/
+    icon: fab fa-linkedin
+

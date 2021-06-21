@@ -109,10 +109,10 @@ defaults:
 
 # Site Author
 author:
-  name: Michael Rose
-  picture: /images/michael-rose-photo.jpg
+  name: Akash Sharma
+  picture: /images/profile.jpg
   email:
-  twitter: mmistakes
+  twitter: 
   links:
     - title: Twitter
       url: https://twitter.com/mmistakes
@@ -123,6 +123,9 @@ author:
     - title: GitHub
       url: https://github.com/mmistakes
       icon: fab fa-github-square
+    - title: Linkedin
+      url: https://www.linkedin.com/in/akash-sharma-4b9375140/
+      icon: fab fa-linkedin-square
 
 # Footer Links
 footer_links:
@@ -138,3 +141,6 @@ footer_links:
   - title: Feed
     url: atom.xml
     icon: fas fa-rss-square
+  - title: linkedin
+    url: https://www.linkedin.com/in/akash-sharma-4b9375140/
+    icon: fab fa-linkedin-square
