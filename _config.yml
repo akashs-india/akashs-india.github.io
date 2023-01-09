@@ -92,7 +92,7 @@ defaults:
 # Site Author
 author:
   name: Akash Sharma
-  picture: /images/profile.jpg
+  picture: 
   email:
   twitter:
   links:
