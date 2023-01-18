@@ -69,7 +69,7 @@ And as you would have guessed recreating the object in memory from the serialize
 ![Deserialization](/images/DeserializationPart1_fig5.png)
 
 Just like any other protocol, the program deserializing the serialized data is expected to able to correctly understand the same and create the object graph using it. For this we need to define a format into which the data can be serialized and from which it can be deserialized. 
-There are several formats that you can use for serialization/deserialization based on the different deserializers/searializers. Some of them are:
+There are several formats that you can use for serialization/deserialization based on the different deserializers/searializers. Some of them are: binary, json, xml and the list goes on.
 
-In the next blog we will dive deep into serialization and deserialization via a binary formatter. This knowledge will them help us understand the vulnerabilities involves in the deseriualization process.
+In the next blog we will dive deep into serialization and deserialization via a binary formatter. This knowledge will them help us understand the vulnerabilities involves in the deserialization process.
 
