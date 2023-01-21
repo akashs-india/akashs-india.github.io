@@ -1,6 +1,7 @@
 ---
 title: "Deserialization Vulnerabilities in .Net - Part 1"
 sub_title: "A deep dive"
+excerpt: Explains what is serialization/deserialization and why it is needed. Also provides insights into the information that this blog series is expected to cover.
 categories:
   - Security
 elements:
