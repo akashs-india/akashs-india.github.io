@@ -9,7 +9,7 @@ elements:
   - formatting
   - html
   - markup
-last_modified_at: 2023-01-21T10:16:49-05:00
+last_modified_at: 2023-01-20T10:16:49-05:00
 ---
 
 **Note:** Before you go through this you are highly recommended to read [Part 1](https://sharmaakash.com/docs/security/Deserialization-Part-1/ "Part 1")
