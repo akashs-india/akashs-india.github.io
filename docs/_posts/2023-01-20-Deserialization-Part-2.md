@@ -24,7 +24,7 @@ We will also look at the serialized data created by the binary formatter. Unders
 We continue to use the same class used in [Part 1](https://sharmaakash.com/docs/security/Deserialization-Part-1/ "Part 1"). (1) in the image below shows the code of the same class.
 In (3) we create an instance of the demo class which is stored in heap memory as an object graph. The last line in (3) also calls the serialization function that can be seen in (4). Post the completion of the serialization process using the binary formatter we end up with the binary byte stream which can then be transported over the network to a different server, sent to another service or stored on disk for later retrieval.
 
-In (5) this data is received at the other end/ read back from the disk and we deserialize the stream to create the objects in memory. Here the process deserializing the data may or may not be the same as the one that serialized the payload and hence may or may have independent address spaces. The memory snips from windbg in (2) and (6) are just for illustration.
+In (5) this data is received at the other end/ read back from the disk and we deserialize the stream to create the objects in memory. Here the process deserializing the data may or may not be the same as the one that serialized the payload and hence may or may not have independent address spaces. The memory snips from windbg in (2) and (6) are just for illustration.
 
 <b>Note:</b> Zoom into images for clarity
 
