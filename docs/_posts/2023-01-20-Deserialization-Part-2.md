@@ -13,15 +13,15 @@ elements:
 last_modified_at: 2023-01-20T10:16:49-05:00
 ---
 
-**Note:** Before you go through this you are highly recommended to read [Part 1](https://sharmaakash.com/docs/security/Deserialization-Part-1/ "Part 1")
+**Note:** Before you go through this you are highly recommended to read [Part 1](https://akashs-india.github.io/docs/security/Deserialization-Part-1/ "Part 1")
 
-In part 2 of this series, we will look at understanding how binary formatter serializes and deserializes data. This is only to give you insights into one of the serializers. That way, you no longer would look at the process of serialization and deserialization as a black box. There are various other serializers/deserializers that can be used for similar purposes. We specifically consider binary formatter as it's inherently insecure and learning more about it will help us understand the crux behind deserialization vulnerabilities.
+In part 2 of this series, we will look at understanding how binary formatter serializes and deserializes data. That way, you no longer need to look at the process of serialization and deserialization as a black box. There are various other serializers/deserializers that can be used for a similar purposes. We specifically consider binary formatter as it's inherently insecure and learning more about it will help us understand the crux behind deserialization vulnerabilities.
 
-We will also look at the serialized data created by the binary formatter. Understanding this gives us insights into the content of the serialized payload which aids in understanding how one can generate a malicious serialized payload.
+We will also look at the serialized data created by the binary formatter. Understanding this gives us insights into the content of the serialized payload, which aids in understanding how one can generate a malicious serialized payload.
 
 ## Overview of the serialization and deserialization process
 
-We continue to use the same class used in [Part 1](https://sharmaakash.com/docs/security/Deserialization-Part-1/ "Part 1"). (1) in the image below shows the code of the same class.
+We continue to use the same class used in [Part 1](https://akashs-india.github.io/docs/security/Deserialization-Part-1/ "Part 1"). (1) in the image below shows the code of the same class.
 In (3) we create an instance of the demo class which is stored in heap memory as an object graph. The last line in (3) also calls the serialization function that can be seen in (4). Post the completion of the serialization process using the binary formatter we end up with the binary byte stream which can then be transported over the network to a different server, sent to another service or stored on disk for later retrieval.
 
 In (5) this data is received at the other end/ read back from the disk and we deserialize the stream to create the objects in memory. Here the process deserializing the data may or may not be the same as the one that serialized the payload and hence may or may not have independent address spaces. The memory snips from windbg in (2) and (6) are just for illustration.
