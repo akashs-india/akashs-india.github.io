@@ -1,7 +1,7 @@
 ---
 title: "Deserialization Vulnerabilities in .Net - Part 2"
 sub_title: "A deep dive"
-excerpt: This blog gives an overview of the serialization and deserialization process. It then explains how the binary formatter serializes and deserializes data. This is only to give you insights into one of the serializers. That way, you no longer would look at the process of serialization and deserialization as a black box. It also explains the serialized data created by the binary formatter. Understanding this gives us insights into the content of the serialized payload which aids in understanding how one can generate a malicious serialized payload that can be used to exploit deserialization vulnerabilities.
+excerpt: Blog adresses the questions on how does serialization and deserialization work and what does the serialized payload contain? We dive deep into the workings on the binary formatter in .Net in the process! 
 categories:
   - Security
 elements:
