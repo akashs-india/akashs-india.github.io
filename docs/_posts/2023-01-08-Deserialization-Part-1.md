@@ -1,5 +1,5 @@
 ---
-title: "Deserialization Vulnerabilities in .Net - Part 1"
+title: "Deserialization Vulnerabilities in .NET - Part 1"
 sub_title: "A deep dive"
 excerpt: Explains what is serialization/deserialization and why it is needed. Also provides insights into the information that this blog series is expected to cover.
 categories:
@@ -12,21 +12,21 @@ elements:
   - markup
 last_modified_at: 2023-01-07T10:16:49-05:00
 ---
-This 4 part blog series aims to provide an overview of what is deserialization and why is it vulnerable. I do so from the perspective of .Net wherein I use C# as the primary language. While explaining the serialization/deserialization and the corresponding vulnerabilities, I have used the binaryFormatter which is inherently unsafe for deserialization and hence more susceptible to deserialization attacks.
+This 4-part blog series aims to provide an overview of deserialization vulnerabilities in .NET, using C# as the primary language. While explaining the serialization/deserialization and the corresponding vulnerabilities, I have used the BinaryFormatter deserializer, which is inherently unsafe for deserialization and hence more susceptible to deserialization attacks.
 
 The 4 parts of the series convey information as follows:
 
-  1. <b>Part 1</b> - Explains what is an object in memory. Post that it uses the same to explain why there is a need for serialization and deserialization.
-  2. <b>Part 2</b> - Explains the serialization and deserialization process via binaryFormatter in detail and also gives you insights into the actual serialized payload and how to understand the same.
-  3. <b>Part 3</b> - Uses ysoserial to create a malicious payload and uses understanding from previous parts to demonstrate and explain a deserialization attack.
-  4. <b>Part 4</b> - Talks about the different preventive measures that we can take to ensure secure deserialization.
+  1. <b>Part 1</b> - Explains what is an object in memory. After that, it builds on this understanding to explain why there is a need for serialization and deserialization.
+  2. <b>Part 2</b> - Explains the serialization and deserialization process via BinaryFormatter in detail. It also gives you insights into the content of the serialized payload and how to understand the same.
+  3. <b>Part 3</b> - Uses ysoserial to create a malicious payload. It leverages understanding from the previous parts to demonstrate and explain a deserialization attack.
+  4. <b>Part 4</b> - Discusses various preventive measures that we can take to ensure secure deserialization.
 
 
 ## Storage of an object in memory
 
-In .Net the CLR manages the allocation and destruction of objects. The memory management in .net involves storing data on the stack or in the 4 different types of heaps maintained by the CLR - code heap, small object heap (SOH), large object heap (LOH) and the process heap. 
+In .NET, the CLR manages the allocation and destruction of objects. The memory management in .NET involves storing data on the stack or heaps. The 4 different types of heaps maintained by the CLR include the code heap, small object heap (SOH), large object heap (LOH) and the process heap. 
 
-Objects in the heap memory are not stored in a linear manner with all information at one place. Instead they are stored like a graph. For example consider the class:
+Objects in the heap memory are not stored in a contiguous memory block with all information at one place. Instead objects are stored as interconnected graphs. For example consider the class:
 
 
 ```c#
@@ -38,39 +38,38 @@ public class Demo
 }
 ```
 
-On creating an object of the above class, we can use windbg to see the object in memory. As this is a reference type it will be created in the heap (in the SOH to be precise).
-On running !dumpheap we can see the object created:
+On creating an object of the above class, we can use windbg  to inspect its presence in memory. As a reference type, it will be created in the heap (specifically in the SOH). Running !dumpheap reveals the object:
 
 ![Looking at objects in heap memory](/images/DeserializationPart1_mem1.png)
 
-Clicking on the MT column show us the details of the object we created:
+Clicking on the MT column shows us the details of the object we created:
 
 ![Looking at parent object](/images/DeserializationPart1_mem2.png)
 
-The demo object contains a string and an int. The primitive type int gets stored directly in the object. But for the string which is a reference type, only the reference is stored in the demo object. The reference points to the memory location where the string is actually stored. Going to that address (03562500), shows us the string value:
+The `demo` object contains a string (`ApplicationName`) and an int (`ApplicationId`). The primitive type int, `ApplicationId`, gets stored directly in the object's memory block. But for `ApplicationName` which is a reference type (string), only the reference is stored in the demo object. The reference points to the memory location where the string `Akash application data` is actually stored. Going to that address (03562500), shows us the string value:
 
 ![Looking at inner object](/images/DeserializationPart1_mem3.png)
 
-With this you should be able to understand that the content of an entire object could be stored in non contiguous chunks in memory.
+This illustrates that an object's content may be stored in non-contiguous chunks in memory.
 
 ## Need for deserialization and serialization
 
-While creating applications we often come across use cases involving:
-1. Sharing information between servers and services
-2. Writing information from memory to disk and reading it back when need arises. (for example creating pickle files in python)
-3. And many more
-
-In multiple such situations there is a need to collect all information about an object (from its object graph in memory) into a form such that it can be efficiently stored/transported.
-This process of converting the data stored in an object graph in memory into a serialized stream is called serialization.
+In application development, scenarios often require sharing information between servers, writing data from memory to disk, or efficient transportation.
+In multiple such situations, there is a need to collect all information about an object (from its object graph in memory) into a form such that it can be efficiently stored/transported.
+Serialization is the process of converting data in an object graph in memory into a serialized stream.
 
 ![Serialization](/images/DeserializationPart1_fig4.png)
 
-And as you would have guessed recreating the object in memory from the serialized data is called deserialization.
+Deserialization, the reverse process, involves recreating the object in memory from the serialized data.
 
 ![Deserialization](/images/DeserializationPart1_fig5.png)
 
-Just like any other protocol, the program deserializing the serialized data is expected to able to correctly understand the same and create the object graph using it. For this we need to define a format into which the data can be serialized and from which it can be deserialized. 
-There are several formats that you can use for serialization/deserialization based on the different deserializers/searializers. Some of them are: binary, json, xml and the list goes on.
+Just like any other protocol, the program deserializing the serialized data must correctly interpret it to recreate the object graph. This requires defining a format into which the data can be serialized and from which it can be deserialized. 
+There are several formats that you can use for serialization/deserialization based on the different deserializers/searializers. Some of them are binary, json, xml, etc.
 
-In the next blog we will dive deep into serialization and deserialization via a binary formatter. This knowledge will them help us understand the vulnerabilities involves in the deserialization process.
+## Some frequently encountered use cases of serialization and deserialization
+
+Building on the insights provided above, you might be pondering why you've never had to implement serialization and deserialization yourself. This is largely due to the fact that many libraries handle these processes internally. A prime example is the System.Net.Http library, which is often used to instantiate objects like HttpClient for making HTTP requests and handling responses. These libraries inherently manage the serialization of your request data into a JSON data stream. Additionally, they facilitate the deserialization of the response stream into a string or JSON object. Thanks to this automated handling, even when dealing with scenarios involving data transport, you've likely been spared from writing explicit serialization and deserialization code.
+
+The next blog will dive deep into serialization and deserialization via binary formatter, laying the groundwork for understanding the vulnerabilities in the deserialization process.
 
