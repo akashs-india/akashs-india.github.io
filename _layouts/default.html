@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<!--
-    So Simple Jekyll Theme 3.2.0
-    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
-    Free for personal and commercial use under the MIT license
-    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
--->
-<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}" class="no-js">
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
   {% include head.html %}
-
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %} {% if page.entries_layout == 'grid' %}page--wide{% endif %} {{ page.title | slugify }}">
-    {% include skip-links.html %}
-    {% include navigation.html %}
-    {% include masthead.html %}
-
-    {{ content }}
-
+</head>
+<body>
+  <a class="skip" href="#main">skip to content</a>
+  <div class="shell">
+    {% include header.html %}
+    <main id="main">
+      {{ content }}
+    </main>
     {% include footer.html %}
-    {% include scripts.html %}
-  </body>
-
+  </div>
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
 </html>

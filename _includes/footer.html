@@ -1,24 +1,10 @@
-<footer id="footer" class="site-footer">
-  {% include footer-custom.html %}
-
-  {%- if site.footer_links -%}
-    <div class="social-icons">
-      {%- for footer_link in site.footer_links -%}
-        {%- if footer_link.url contains "://" -%}
-          {%- assign url = footer_link.url -%}
-        {%- else -%}
-          {%- assign url = footer_link.url | relative_url -%}
-        {%- endif -%}
-        <a class="social-icon" href="{{ url }}"><i class="{{ footer_link.icon | default: 'fas fa-link' }} fa-2x" title="{{ footer_link.title }}"></i></a>
-      {%- endfor -%}
-    </div>
-  {%- endif -%}
-
-  <div class="copyright">
-    {% if site.copyright %}
-      {{ site.copyright | markdownify }}
-    {% else %}
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.text[site.locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
-    {% endif %}
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="https://github.com/{{ site.author.github }}" rel="me noopener">github</a>
+    <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}" rel="me noopener">linkedin</a>
+  </div>
+  <div class="footer-meta">
+    <span>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</span>
+    <span class="muted">exit 0</span>
   </div>
 </footer>

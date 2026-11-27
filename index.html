@@ -1,0 +1,28 @@
+---
+layout: default
+title: Akash Sharma
+---
+<section class="plain-hero" aria-label="Introduction">
+  <h1 class="plain-name">Akash Sharma</h1>
+  <p class="plain-role">Software engineer · distributed systems, security &amp; AI</p>
+  <p class="plain-line">I build systems that serve trillions of requests, keep them secure, and put AI to work on them. Currently a senior engineer at Microsoft, working on Microsoft 365.</p>
+  <p class="plain-links">
+    <a href="{{ '/about/' | relative_url }}">about</a>
+    <a href="https://github.com/{{ site.author.github }}" rel="me noopener">github</a>
+    <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}" rel="me noopener">linkedin</a>
+  </p>
+</section>
+
+<section class="listing" aria-labelledby="blogs">
+  <h2 class="plain-heading" id="blogs">Blogs</h2>
+  {%- if site.posts.size > 0 %}
+  <ul class="posts">
+    {%- for post in site.posts limit: 8 %}
+    {% include post-row.html post=post %}
+    {%- endfor %}
+  </ul>
+  {%- if site.posts.size > 8 %}<p><a class="more" href="{{ '/blogs/' | relative_url }}">all {{ site.posts.size }} posts &rarr;</a></p>{% endif %}
+  {%- else %}
+  <p class="muted empty">First post coming soon.</p>
+  {%- endif %}
+</section>
