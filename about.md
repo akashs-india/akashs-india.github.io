@@ -21,7 +21,8 @@ OpenPrinting project through Google Summer of Code.
 from IIT Mandi, where I received the President of India Gold Medal.
 
 This site is where I write about that work in depth: architecture, failure stories, security, and
-what it takes to build real software with AI.
+what it takes to build real software with AI. Everything here is my personal view and does not
+represent my employer.
 
 You can find me on [LinkedIn](https://www.linkedin.com/in/{{ site.author.linkedin }}) and
 [GitHub](https://github.com/{{ site.author.github }}).
