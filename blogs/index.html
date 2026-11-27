@@ -1,0 +1,20 @@
+---
+layout: default
+title: Blogs
+---
+<section class="listing">
+  <h1 class="page-title"><span class="hash">#</span> blogs</h1>
+  <p class="muted">Long-form notes on systems, security and AI engineering.</p>
+  {%- if site.posts.size == 0 %}
+  <p class="muted empty">nothing here yet.</p>
+  {%- endif %}
+  {%- assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
+  {%- for y in by_year %}
+  <h2 class="year">{{ y.name }}</h2>
+  <ul class="posts">
+    {%- for post in y.items %}
+    {% include post-row.html post=post %}
+    {%- endfor %}
+  </ul>
+  {%- endfor %}
+</section>
