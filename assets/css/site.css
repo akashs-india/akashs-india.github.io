@@ -91,6 +91,7 @@ main { flex: 1; padding: 2.5rem 0 3rem; }
 .footer-links, .footer-meta { display: flex; gap: 1rem; }
 .footer-links a { color: var(--muted); }
 .footer-links a:hover { color: var(--green); }
+.disclaimer { flex-basis: 100%; margin: .25rem 0 0; color: var(--dim); font-size: .75rem; }
 
 /* ---------- prompt / terminal ---------- */
 .prompt { margin-right: .5ch; white-space: nowrap; }
